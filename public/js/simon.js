@@ -1,7 +1,7 @@
 "use strict";
 // $(document).ready(function(){
 
-	var colorsLit = [];
+	var colorsLit = ['red','blue','red','green'];
 	var colorsIndex = 0;
 
 	function randomNumber(min,max){
@@ -14,6 +14,16 @@
 			$color.css('opacity','0.5')
 		}, 500);
 	}
+
+	function showCurrentSequence () {
+		var i = 0;
+		var showingSequence = setInterval(function(){
+			lightUp( $('#'+colorsLit[i]) );
+			i++;
+			if(i === colorsLit.length) clearInterval(showingSequence);
+		},750)
+	}
+
 
 	function lightUpRandomColor () {
 		var colorToLight = randomNumber(1,4);
