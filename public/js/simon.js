@@ -9,9 +9,9 @@
 	}
 
 	function lightUp($color){
-		$color.css('opacity','1');
+		$color.addClass('light-up');
 		setTimeout( function(){
-			$color.css('opacity','0.5')
+			$color.removeClass('light-up')
 		}, 500);
 	}
 
@@ -35,7 +35,6 @@
 		if ($(this).attr('id') === colorsLit[colorsIndex]) {
 		    colorsIndex += 1;
 		    if (colorsIndex === colorsLit.length) {
-		        alert('correct sequence entered!');
 		        startNewRound();
 		    }
 		} else {
@@ -59,15 +58,5 @@
 	}
 
 	$('#middle-btn').click(startGame);
-
-	$('.color-btn').on('mousedown',function(){
-		$(this).css('opacity','1');
-	})
-
-	$('.color-btn').hover(function(){
-		$(this).css('opacity','0.65');
-	},function(){
-		$(this).css('opacity','0.3');
-	})
 
 // });

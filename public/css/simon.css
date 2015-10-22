@@ -39,6 +39,15 @@ body{
 	opacity: 0.3;
 }
 
+.color-btn:hover{
+	opacity: 0.65;
+}
+
+.light-up,
+.color-btn:active{
+	opacity: 1 !important;
+}
+
 #green{
 	background-color: green;
 }
