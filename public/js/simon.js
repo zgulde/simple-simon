@@ -26,21 +26,8 @@
 	}
 
 	function addRandomColor () {
-		var colorToAdd = '';
-		switch(randomNumber(1,4)){
-			case 1:
-				colorToAdd = 'green';
-				break;
-			case 2:
-				colorToAdd = 'red';
-				break;
-			case 3:
-				colorToAdd = 'yellow';
-				break;
-			case 4:
-				colorToAdd = 'blue';
-				break;
-		}
+		var colors = ['green','red','yellow','blue']
+		var colorToAdd = colors[randomNumber(0,3)];
 		colorsLit.push(colorToAdd);
 	}
 
@@ -66,12 +53,21 @@
 		$('.color-btn').on('click',checkClicks);
 	}
 
-	$('#middle-btn').click(startNewRound);
+	function startGame () {
+		$('#middle-btn').off('click');
+		startNewRound();
+	}
+
+	$('#middle-btn').click(startGame);
+
+	$('.color-btn').on('mousedown',function(){
+		$(this).css('opacity','1');
+	})
 
 	$('.color-btn').hover(function(){
-		$(this).css('opacity','0.75');
+		$(this).css('opacity','0.65');
 	},function(){
-		$(this).css('opacity','0.5');
+		$(this).css('opacity','0.3');
 	})
 
 // });
