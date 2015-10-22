@@ -2,9 +2,17 @@
 // $(document).ready(function(){
 
 	var colorsLit = [];
+	var colorsIndex = 0;
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
+	}
+
+	function lightUp($color){
+		$color.css('opacity','1');
+		setTimeout( function(){
+			$color.css('opacity','0.5')
+		}, 500);
 	}
 
 	function lightUpRandomColor () {
@@ -31,11 +39,13 @@
 	}
 
 	$('.color-btn').click(function(){
-		$(this).css('opacity','1');
-		if ($(this).attr('id') === colorsLit[0]) {
-		    alert('sucess!');
+		if ($(this).attr('id') === colorsLit[colorsIndex]) {
+		    colorsIndex += 1;
+		    if (colorsIndex === colorsLit.length) {
+		        something(); //correct sequence entered
+		    }
 		} else {
-			alert('failure!');
+			colorsIndex = 0;
 		}
 	});
 
@@ -44,6 +54,5 @@
 	},function(){
 		$(this).css('opacity','0.5');
 	})
-
 
 // });
