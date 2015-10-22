@@ -13,15 +13,17 @@
 	position: absolute;
 	top: 175px;
 	right: 175px;
-	background-color: rgba(255,255,255,1);
+	background-color: rgb(0,0,0);
+	opacity: 0.5;
 	border-radius: 40%;
 }
 
-#green,#red,#yellow,#blue{
+.color-btn{
 	float: left;
 	height: 250px;
 	width: 250px;
 	box-sizing: border-box;
+	opacity: 0.5;
 }
 
 #green{
