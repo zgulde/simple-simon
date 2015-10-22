@@ -1,7 +1,7 @@
 "use strict";
 // $(document).ready(function(){
 
-	var colorsLit = ['red','blue','red','green'];
+	var colorsLit = [];
 	var colorsIndex = 0;
 
 	function randomNumber(min,max){
@@ -18,34 +18,30 @@
 	function showCurrentSequence () {
 		var i = 0;
 		var showingSequence = setInterval(function(){
-			lightUp( $('#'+colorsLit[i]) );
+			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
 			i++;
 			if(i === colorsLit.length) clearInterval(showingSequence);
 		},750)
 	}
 
 
-	function lightUpRandomColor () {
-		var colorToLight = randomNumber(1,4);
-		switch(colorToLight){
+	function addRandomColor () {
+		var colorToAdd = '';
+		switch(randomNumber(1,4)){
 			case 1:
-				colorToLight = $('#green');
+				colorToAdd = 'green';
 				break;
 			case 2:
-				colorToLight = $('#red');
+				colorToAdd = 'red';
 				break;
 			case 3:
-				colorToLight = $('#yellow');
+				colorToAdd = 'yellow';
 				break;
 			case 4:
-				colorToLight = $('#blue');
+				colorToAdd = 'blue';
 				break;
 		}
-		colorsLit.push(colorToLight.attr('id'));
-		colorToLight.css('opacity','1');
-		setTimeout( function(){
-			colorToLight.css('opacity','0.5')
-		}, 500);
+		colorsLit.push(colorToAdd);
 	}
 
 	$('.color-btn').click(function(){
