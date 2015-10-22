@@ -21,7 +21,7 @@
 			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
 			i++;
 			if(i === colorsLit.length) clearInterval(showingSequence);
-		},750)
+		},1000)
 	}
 
 	function addRandomColor () {
@@ -53,6 +53,14 @@
 			colorsIndex = 0;
 			alert('wrong!');
 		}
+	}
+
+	function startNewRound () {
+		colorsIndex = 0;
+		$('.color-btn').off('click');
+		addRandomColor();
+		showCurrentSequence();
+		$('.color-btn').on('click',checkClicks);
 	}
 
 	$('.color-btn').click(checkClicks);
