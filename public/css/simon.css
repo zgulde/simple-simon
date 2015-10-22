@@ -7,15 +7,23 @@
 	overflow: hidden;
 }
 
-#middle-button{
+#middle-btn{
 	height: 150px;
 	width: 150px;
 	position: absolute;
 	top: 175px;
 	right: 175px;
-	background-color: rgb(0,0,0);
-	opacity: 0.5;
+	background-color: black;
 	border-radius: 40%;
+}
+
+#middle-btn-text{
+	font-family: monospace;
+	color: white;
+	position: absolute;
+	font-size: 20px;
+	padding: 45px;
+	text-align: center;
 }
 
 .color-btn{
