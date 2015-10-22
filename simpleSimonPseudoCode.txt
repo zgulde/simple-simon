@@ -47,4 +47,5 @@ function gamelost(){
 startbtn.onclick 
 	newRound()
 	remove onclick
+	change content of startbtnnew
 

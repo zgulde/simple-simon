@@ -16,6 +16,7 @@
 	}
 
 	function showCurrentSequence () {
+		console.log(colorsLit);
 		var i = 0;
 		var showingSequence = setInterval(function(){
 			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
@@ -48,6 +49,7 @@
 		    colorsIndex += 1;
 		    if (colorsIndex === colorsLit.length) {
 		        alert('correct sequence entered!');
+		        startNewRound();
 		    }
 		} else {
 			colorsIndex = 0;
@@ -59,22 +61,12 @@
 		colorsIndex = 0;
 		$('.color-btn').off('click');
 		addRandomColor();
+		$('#middle-btn-text').text('Round ' + colorsLit.length);
 		showCurrentSequence();
 		$('.color-btn').on('click',checkClicks);
 	}
 
-	$('.color-btn').click(checkClicks);
-
-	// $('.color-btn').click(function(){
-	// 	if ($(this).attr('id') === colorsLit[colorsIndex]) {
-	// 	    colorsIndex += 1;
-	// 	    if (colorsIndex === colorsLit.length) {
-	// 	        something(); //correct sequence entered
-	// 	    }
-	// 	} else {
-	// 		colorsIndex = 0;
-	// 	}
-	// });
+	$('#middle-btn').click(startNewRound);
 
 	$('.color-btn').hover(function(){
 		$(this).css('opacity','0.75');
