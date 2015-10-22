@@ -24,7 +24,6 @@
 		},750)
 	}
 
-
 	function addRandomColor () {
 		var colorToAdd = '';
 		switch(randomNumber(1,4)){
@@ -44,16 +43,30 @@
 		colorsLit.push(colorToAdd);
 	}
 
-	$('.color-btn').click(function(){
+	function checkClicks () {
 		if ($(this).attr('id') === colorsLit[colorsIndex]) {
 		    colorsIndex += 1;
 		    if (colorsIndex === colorsLit.length) {
-		        something(); //correct sequence entered
+		        alert('correct sequence entered!');
 		    }
 		} else {
 			colorsIndex = 0;
+			alert('wrong!');
 		}
-	});
+	}
+
+	$('.color-btn').click(checkClicks);
+
+	// $('.color-btn').click(function(){
+	// 	if ($(this).attr('id') === colorsLit[colorsIndex]) {
+	// 	    colorsIndex += 1;
+	// 	    if (colorsIndex === colorsLit.length) {
+	// 	        something(); //correct sequence entered
+	// 	    }
+	// 	} else {
+	// 		colorsIndex = 0;
+	// 	}
+	// });
 
 	$('.color-btn').hover(function(){
 		$(this).css('opacity','0.75');
