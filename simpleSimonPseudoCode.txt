@@ -1,0 +1,50 @@
+simpleSimonPseudoCode.txt
+var index
+var colorsLit = []
+
+function addrandomcolor(){
+	pick a color to light up
+	push it to colorsLit array
+}
+
+function newRound(){
+	index = 0
+	remove checkclicks from colorbtns
+	addrandomcolor()
+	showcurrentsequence()
+	add checkclicks to colorbtns
+}
+
+function checkclicks(){
+	if currentClick = colorsLit[index]
+		index++
+	else
+		gamelost()
+	if index = colorslit.length
+		newRound()
+}
+
+function lightUp(color){
+	color.opacity=1;
+	timeout 500 opacity = 0.5
+}
+
+
+function showcurrentsequence(){
+	colorsLit.forEach
+		lightUp(color)
+}
+
+function gamelost(){
+	colorsLit = []
+	index = 0
+	startbtn.onclick
+		newRound()
+	display current score //=colorsLit.length
+
+}
+
+startbtn.onclick 
+	newRound()
+	remove onclick
+
