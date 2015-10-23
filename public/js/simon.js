@@ -56,6 +56,20 @@
 		return Math.floor( (Math.random() * (max-min+1) + min) );
 	}
 
+	function changeAndUpdateSounds(blueNoteName,yellowNoteName,redNoteName,greenNoteName){
+		blueSound = musicalNotes[blueNoteName];
+		$('#change-blue-note').val(blueNoteName);
+
+		yellowSound = musicalNotes[yellowNoteName];
+		$('#change-yellow-note').val(yellowNoteName);
+		
+		redSound = musicalNotes[redNoteName];
+		$('#change-red-note').val(redNoteName);
+		
+		greenSound = musicalNotes[greenNoteName];
+		$('#change-green-note').val(greenNoteName);
+	}
+
 	function playThenPause (sound,duration) {
 		if(!duration) duration = 300;
 		sound.play();
@@ -122,13 +136,18 @@
 
 	function startNewRound () {
 		spinSpeed -= 2;
-		$('.spinning').css('animation-duration',spinSpeed + 's');
-		if(colorsLit.length === 2) $('#game').addClass('spinning');
 		colorsIndex = 0;
-		$('.color-btn').off('click',checkClicks);
+
+		if(colorsLit.length === 3) $('#game').addClass('moving');
+		
 		addRandomColor();
+
 		$('#middle-btn-text').text('Round ' + colorsLit.length);
+		$('.moving').css('animation-duration',spinSpeed + 's');
+		$('.color-btn').off('click',checkClicks);
+		
 		showCurrentSequence();
+
 		$('.color-btn').on('click',checkClicks);
 	}
 
@@ -172,15 +191,29 @@
 		});
 		$('#change-blue-note').change(function(){
 			blueSound = musicalNotes[$(this).val()];
+			playThenPause(blueSound);
+			lightUp($('#blue'));
 		});
 		$('#change-yellow-note').change(function(){
 			yellowSound = musicalNotes[$(this).val()];
+			playThenPause(yellowSound);
+			lightUp($('#yellow'));
 		});
 		$('#change-red-note').change(function(){
 			redSound = musicalNotes[$(this).val()];
+			playThenPause(redSound);
+			lightUp($('#red'));
 		});
 		$('#change-green-note').change(function(){
 			greenSound = musicalNotes[$(this).val()];
+			playThenPause(greenSound);
+			lightUp($('#green'));
+		});
+		$('#original-simon-btn').click(function(){
+			changeAndUpdateSounds('E 2','C#3','A 3','E 4');
+		});
+		$('#latest-simon-btn').click(function(){
+			changeAndUpdateSounds('G 2','C 3','E 3','G 3');
 		});
 	})();
 
