@@ -4,9 +4,30 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
+	var blueSound = new Audio('/media/A2.wav');
+	var yellowSound = new Audio('/media/csharp3.wav');
+	var redSound = new Audio('/media/E3.wav');
+	var greenSound = new Audio('/media/A3.wav');
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
+	}
+
+	function getSound (color) {
+		switch (color){
+			case "blue":
+				return blueSound;
+				break;
+			case "yellow":
+				return yellowSound;
+				break;
+			case "red":
+				return redSound;
+				break;
+			case "green":
+				return greenSound;
+				break;
+		}
 	}
 
 	function lightUp($color){
