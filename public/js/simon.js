@@ -3,6 +3,7 @@
 
 	var colorsLit = [];
 	var colorsIndex = 0;
+	var lightUpSpeed = 300;
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
@@ -12,7 +13,7 @@
 		$color.addClass('light-up');
 		setTimeout( function(){
 			$color.removeClass('light-up')
-		}, 500);
+		}, lightUpSpeed);
 	}
 
 	function showCurrentSequence () {
@@ -22,7 +23,7 @@
 			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
 			i++;
 			if(i === colorsLit.length) clearInterval(showingSequence);
-		},1000)
+		},lightUpSpeed*2)
 	}
 
 	function addRandomColor () {
@@ -39,7 +40,7 @@
 		    }
 		} else {
 			colorsIndex = 0;
-			alert('wrong!');
+			endGame();
 		}
 	}
 
@@ -53,8 +54,17 @@
 	}
 
 	function startGame () {
+		colorsLit = [];
 		$('#middle-btn').off('click');
 		startNewRound();
+	}
+
+	function endGame () {
+		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
+		setTimeout( function(){
+			$('#middle-btn-text').text('Again?');
+			$('#middle-btn').on('click',startGame);
+		}, 2000);
 	}
 
 	$('#middle-btn').click(startGame);
