@@ -4,7 +4,8 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
-	//c2, cs2, ... c5
+	var spinSpeed = 20;
+	//'C 2','C#2',...'C 5' all sharps, no flats
 	var musicalNotes = {
 		"C 2": new Audio('/media/C2.wav'),
 		"C#2": new Audio('/media/CS2.wav'),
@@ -49,6 +50,7 @@
 	var redSound = musicalNotes['B 3'];
 	var greenSound = musicalNotes['C 4'];
 	var lossSound = musicalNotes['C#3'];
+
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
@@ -119,6 +121,9 @@
 	}
 
 	function startNewRound () {
+		spinSpeed -= 2;
+		$('.spinning').css('animation-duration',spinSpeed + 's');
+		if(colorsLit.length === 2) $('#game').addClass('spinning');
 		colorsIndex = 0;
 		$('.color-btn').off('click',checkClicks);
 		addRandomColor();
@@ -140,6 +145,7 @@
 			$('#middle-btn').on('click',startGame);
 		}, 2000);
 		playThenPause(lossSound,1000);
+		$('#game').removeClass('spinning');
 	}
 
 	//build the note selects
@@ -151,6 +157,10 @@
 					note + '</option>');
 			}
 		});
+		$('#change-blue-note').val('C 3');
+		$('#change-yellow-note').val('G 3');
+		$('#change-red-note').val('B 3');
+		$('#change-green-note').val('C 4');
 	})();
 
 	//add event listeners
