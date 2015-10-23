@@ -5,7 +5,7 @@
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
 	//c2, cs2, ... c5
-	var notes = {
+	var musicalNotes = {
 		c2: new Audio('/media/C2.wav'),
 		cs2: new Audio('/media/CS2.wav'),
 		d2: new Audio('/media/D2.wav'),
@@ -44,11 +44,11 @@
 		b4: new Audio('/media/B4.wav'),
 		c5: new Audio('/media/C5.wav')
 	}
-	var blueSound = notes.c3;
-	var yellowSound = notes.g3;
-	var redSound = notes.b3;
-	var greenSound = notes.c4;
-	var lossSound = notes.c3;
+	var blueSound = musicalNotes.c3;
+	var yellowSound = musicalNotes.g3;
+	var redSound = musicalNotes.b3;
+	var greenSound = musicalNotes.c4;
+	var lossSound = musicalNotes.c3;
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
@@ -143,6 +143,30 @@
 		playThenPause(lossSound,1000);
 	}
 
+	$('#change-blue-note').change(function(){
+		blueSound = musicalNotes[$(this).val()];
+	});
+	$('#change-yellow-note').change(function(){
+		yellowSound = musicalNotes[$(this).val()];
+	});
+	$('#change-red-note').change(function(){
+		redSound = musicalNotes[$(this).val()];
+	});
+	$('#change-green-note').change(function(){
+		greenSound = musicalNotes[$(this).val()];
+	});
+
+	//build the note selects
+	(function(){
+		$('.change-note').each(function(index,element){
+			var $select = $(this);
+			for(var note in musicalNotes){	
+				$select.append('<option value="'+note+'">' +
+					note + '</option>');
+			}
+		});
+	})();
+
 	//add event listeners
 	(function(){
 		$('#middle-btn').click(startGame);
@@ -153,3 +177,11 @@
 	})();
 
 // });
+
+
+
+
+// setInterval(function(){
+//   rotate+=5;
+//   $('#game').css('transform','rotate('+rotate+'deg)');
+// },100);
