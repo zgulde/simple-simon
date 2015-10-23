@@ -7,9 +7,9 @@ body{
 	height: 500px;
 	margin: 0 auto;
 	position: relative;
-	border-radius: 40%;
-	overflow: hidden;
-	border: 15px solid #444;
+	border-radius: 50%;
+	border: 15px solid #555;
+	box-shadow: 0 0 5px 8px black;
 }
 
 #middle-btn{
@@ -18,8 +18,17 @@ body{
 	position: absolute;
 	top: 175px;
 	right: 175px;
-	background-color: black;
-	border-radius: 40%;
+	background-color: #444;
+	border-radius: 50%;
+	box-sizing: border-box;
+}
+
+#middle-btn:hover{
+	background-color: #222;
+}
+
+#middle-btn:active{
+	background-color: #000;
 }
 
 #middle-btn-text{
@@ -37,6 +46,8 @@ body{
 	width: 250px;
 	box-sizing: border-box;
 	opacity: 0.3;
+	transition: all 0.3s;
+	position: relative;
 }
 
 .color-btn:hover{
@@ -50,16 +61,55 @@ body{
 
 #green{
 	background-color: green;
+	border-radius: 100% 0 0 0;
+}
+
+#green:hover{
+	box-shadow: 0 0 30px green;
+}
+.green-lit,
+#green:active{
+	box-shadow: 0 0 60px green;
 }
 
 #red{
 	background-color: red;
+	border-radius: 0 100% 0 0;
+}
+
+#red:hover{
+	box-shadow: 0 0 30px red;
+}
+
+.red-lit,
+#red:active{
+	box-shadow: 0 0 60px red;
 }
 
 #yellow{
 	background-color: yellow;
+	border-radius: 0 0 0 100%;
+}
+
+#yellow:hover{
+	box-shadow: 0 0 30px yellow;
+}
+
+.yellow-lit,
+#yellow:active{
+	box-shadow: 0 0 60px yellow;
 }
 
 #blue{
 	background-color: blue;
+	border-radius: 0 0 100% 0;
+}
+
+#blue:hover{
+	box-shadow: 0 0 30px blue;
+}
+
+.blue-lit,
+#blue:active{
+	box-shadow: 0 0 60px blue;
 }

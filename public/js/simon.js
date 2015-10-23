@@ -3,7 +3,7 @@
 
 	var colorsLit = [];
 	var colorsIndex = 0;
-	var lightUpSpeed = 300;
+	var lightUpSpeed = 350;
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
@@ -11,8 +11,10 @@
 
 	function lightUp($color){
 		$color.addClass('light-up');
+		$color.addClass($color.attr('id') + '-lit');
 		setTimeout( function(){
 			$color.removeClass('light-up')
+			$color.removeClass($color.attr('id') + '-lit');
 		}, lightUpSpeed);
 	}
 
