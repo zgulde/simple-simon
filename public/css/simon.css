@@ -5,11 +5,12 @@ body{
 #game{
 	width: 500px;
 	height: 500px;
-	margin: 0 auto;
+	margin: 0 150px;
 	position: relative;
 	border-radius: 50%;
 	border: 15px solid #555;
 	box-shadow: 0 0 5px 8px black;
+	display: inline-block;
 }
 
 #middle-btn{
@@ -112,4 +113,15 @@ body{
 .blue-lit,
 #blue:active{
 	box-shadow: 0 0 60px blue;
+}
+
+#options-area {
+	position: relative;
+	width: 20%;
+	margin: 0 50px;
+	height: 500px;
+	border-radius: 3%;
+	background-color: #ddd;
+	box-shadow: 2px 2px 2px black;
+	display: inline-block;
 }
