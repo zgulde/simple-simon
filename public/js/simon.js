@@ -112,7 +112,10 @@
 		var showingSequence = setInterval(function(){
 			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
 			i++;
-			if(i === colorsLit.length) clearInterval(showingSequence);
+			if(i === colorsLit.length){
+				$('.color-btn').on('click',checkClicks);	
+				clearInterval(showingSequence);
+			} 
 		},lightUpSpeed*2)
 	}
 
@@ -135,10 +138,10 @@
 	}
 
 	function startNewRound () {
-		spinSpeed -= 2;
+		spinSpeed -= 0.75;
 		colorsIndex = 0;
 
-		if(colorsLit.length === 3) $('#game').addClass('moving');
+		if(colorsLit.length === 5) $('#game').addClass('moving');
 		
 		addRandomColor();
 
@@ -147,11 +150,10 @@
 		$('.color-btn').off('click',checkClicks);
 		
 		showCurrentSequence();
-
-		$('.color-btn').on('click',checkClicks);
 	}
 
 	function startGame () {
+		$('#game').removeClass('moving');
 		colorsLit = [];
 		$('#middle-btn').off('click');
 		startNewRound();
@@ -165,6 +167,7 @@
 		}, 2000);
 		playThenPause(lossSound,1000);
 		$('#game').removeClass('spinning');
+		$('.color-btn').off('click',checkClicks);
 	}
 
 	//build the note selects
