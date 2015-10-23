@@ -6,49 +6,49 @@
 	var lightUpSpeed = 350;
 	//c2, cs2, ... c5
 	var musicalNotes = {
-		c2: new Audio('/media/C2.wav'),
-		cs2: new Audio('/media/CS2.wav'),
-		d2: new Audio('/media/D2.wav'),
-		ds2: new Audio('/media/DS2.wav'),
-		e2: new Audio('/media/E2.wav'),
-		f2: new Audio('/media/F2.wav'),
-		fs2: new Audio('/media/FS2.wav'),
-		g2: new Audio('/media/G2.wav'),
-		gs2: new Audio('/media/GS2.wav'),
-		a2: new Audio('/media/A2.wav'),
-		as2: new Audio('/media/AS2.wav'),
-		b2: new Audio('/media/B2.wav'),
-		c3: new Audio('/media/C3.wav'),
-		cs3: new Audio('/media/CS3.wav'),
-		d3: new Audio('/media/D3.wav'),
-		ds3: new Audio('/media/DS3.wav'),
-		e3: new Audio('/media/E3.wav'),
-		f3: new Audio('/media/F3.wav'),
-		fs3: new Audio('/media/FS3.wav'),
-		g3: new Audio('/media/G3.wav'),
-		gs3: new Audio('/media/GS3.wav'),
-		a3: new Audio('/media/A3.wav'),
-		as3: new Audio('/media/AS3.wav'),
-		b3: new Audio('/media/B3.wav'),
-		c4: new Audio('/media/C4.wav'),
-		cs4: new Audio('/media/CS4.wav'),
-		d4: new Audio('/media/D4.wav'),
-		ds4: new Audio('/media/DS4.wav'),
-		e4: new Audio('/media/E4.wav'),
-		f4: new Audio('/media/F4.wav'),
-		fs4: new Audio('/media/FS4.wav'),
-		g4: new Audio('/media/G4.wav'),
-		gs4: new Audio('/media/GS4.wav'),
-		a4: new Audio('/media/A4.wav'),
-		as4: new Audio('/media/AS4.wav'),
-		b4: new Audio('/media/B4.wav'),
-		c5: new Audio('/media/C5.wav')
+		"C 2": new Audio('/media/C2.wav'),
+		"C#2": new Audio('/media/CS2.wav'),
+		"D 2": new Audio('/media/D2.wav'),
+		"D#2": new Audio('/media/DS2.wav'),
+		"E 2": new Audio('/media/E2.wav'),
+		"F 2": new Audio('/media/F2.wav'),
+		"F#2": new Audio('/media/FS2.wav'),
+		"G 2": new Audio('/media/G2.wav'),
+		"G#2": new Audio('/media/GS2.wav'),
+		"A 2": new Audio('/media/A2.wav'),
+		"A#2": new Audio('/media/AS2.wav'),
+		"B 2": new Audio('/media/B2.wav'),
+		"C 3": new Audio('/media/C3.wav'),
+		"C#3": new Audio('/media/CS3.wav'),
+		"D 3": new Audio('/media/D3.wav'),
+		"D#3": new Audio('/media/DS3.wav'),
+		"E 3": new Audio('/media/E3.wav'),
+		"F 3": new Audio('/media/F3.wav'),
+		"F#3": new Audio('/media/FS3.wav'),
+		"G 3": new Audio('/media/G3.wav'),
+		"G#3": new Audio('/media/GS3.wav'),
+		"A 3": new Audio('/media/A3.wav'),
+		"A#3": new Audio('/media/AS3.wav'),
+		"B 3": new Audio('/media/B3.wav'),
+		"C 4": new Audio('/media/C4.wav'),
+		"C#4": new Audio('/media/CS4.wav'),
+		"D 4": new Audio('/media/D4.wav'),
+		"D#4": new Audio('/media/DS4.wav'),
+		"E 4": new Audio('/media/E4.wav'),
+		"F 4": new Audio('/media/F4.wav'),
+		"F#4": new Audio('/media/FS4.wav'),
+		"G 4": new Audio('/media/G4.wav'),
+		"G#4": new Audio('/media/GS4.wav'),
+		"A 4": new Audio('/media/A4.wav'),
+		"A#4": new Audio('/media/AS4.wav'),
+		"B 4": new Audio('/media/B4.wav'),
+		"C 5": new Audio('/media/C5.wav')
 	}
-	var blueSound = musicalNotes.c3;
-	var yellowSound = musicalNotes.g3;
-	var redSound = musicalNotes.b3;
-	var greenSound = musicalNotes.c4;
-	var lossSound = musicalNotes.c3;
+	var blueSound = musicalNotes['C 3'];
+	var yellowSound = musicalNotes['G 3'];
+	var redSound = musicalNotes['B 3'];
+	var greenSound = musicalNotes['C 4'];
+	var lossSound = musicalNotes['C#3'];
 
 	function randomNumber(min,max){
 		return Math.floor( (Math.random() * (max-min+1) + min) );
@@ -92,7 +92,6 @@
 	}
 
 	function showCurrentSequence () {
-		console.log(colorsLit);
 		var i = 0;
 		var showingSequence = setInterval(function(){
 			lightUp( $('#'+colorsLit[i]) ); //convert color name to jquery selector for that div
@@ -143,19 +142,6 @@
 		playThenPause(lossSound,1000);
 	}
 
-	$('#change-blue-note').change(function(){
-		blueSound = musicalNotes[$(this).val()];
-	});
-	$('#change-yellow-note').change(function(){
-		yellowSound = musicalNotes[$(this).val()];
-	});
-	$('#change-red-note').change(function(){
-		redSound = musicalNotes[$(this).val()];
-	});
-	$('#change-green-note').change(function(){
-		greenSound = musicalNotes[$(this).val()];
-	});
-
 	//build the note selects
 	(function(){
 		$('.change-note').each(function(index,element){
@@ -173,7 +159,19 @@
 		$('.color-btn').click(function(){
 			var sound = getSoundFromColorName($(this).attr('id'));
 			playThenPause(sound,200);
-		})
+		});
+		$('#change-blue-note').change(function(){
+			blueSound = musicalNotes[$(this).val()];
+		});
+		$('#change-yellow-note').change(function(){
+			yellowSound = musicalNotes[$(this).val()];
+		});
+		$('#change-red-note').change(function(){
+			redSound = musicalNotes[$(this).val()];
+		});
+		$('#change-green-note').change(function(){
+			greenSound = musicalNotes[$(this).val()];
+		});
 	})();
 
 // });
