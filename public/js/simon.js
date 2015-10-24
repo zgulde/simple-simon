@@ -4,7 +4,7 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
-	var spinSpeed = 20;
+	var spinSpeed = 10;
 	//'C 2','C#2',...'C 5' all sharps, no flats
 	var musicalNotes = {
 		"C 2": new Audio('/media/C2.wav'),
@@ -49,7 +49,7 @@
 	var yellowSound = musicalNotes['G 3'];
 	var redSound = musicalNotes['B 3'];
 	var greenSound = musicalNotes['C 4'];
-	var lossSound = musicalNotes['C#3'];
+	var lossSound = new Audio('/media/mario_game_over.mp3');
 
 
 	function randomNumber(min,max){
@@ -80,6 +80,7 @@
 	}
 
 	function getSoundFromColorName (color) {
+		console.log(colorsLit);
 		switch (color){
 			case "blue":
 				return blueSound;
@@ -96,15 +97,16 @@
 		}
 	}
 
-	function lightUp($color){
+	function lightUp($color,duration){
 		var sound = getSoundFromColorName($color.attr('id'));
+		if(!duration) duration = lightUpSpeed;
 		playThenPause(sound);
 		$color.addClass('light-up');
 		$color.addClass($color.attr('id') + '-lit');
 		setTimeout( function(){
 			$color.removeClass('light-up')
 			$color.removeClass($color.attr('id') + '-lit');
-		}, lightUpSpeed);
+		}, duration);
 	}
 
 	function showCurrentSequence () {
@@ -138,10 +140,10 @@
 	}
 
 	function startNewRound () {
-		spinSpeed -= 0.75;
+		spinSpeed -= 1;
 		colorsIndex = 0;
 
-		if(colorsLit.length === 5) $('#game').addClass('moving');
+		if(colorsLit.length === 3) $('#game').addClass('moving');
 		
 		addRandomColor();
 
@@ -161,12 +163,18 @@
 
 	function endGame () {
 		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
+		lossSound.play();
 		setTimeout( function(){
-			$('#middle-btn-text').text('Again?');
-			$('#middle-btn').on('click',startGame);
-		}, 2000);
-		playThenPause(lossSound,1000);
-		$('#game').removeClass('spinning');
+			var $lastColor =$('#' + colorsLit[colorsLit.length-1]);
+			lightUp($lastColor,500);
+			setTimeout( function(){lightUp($lastColor,500);}, 600);
+			setTimeout( function(){
+				lightUp($lastColor,500);
+				$('#middle-btn-text').text('Again?');
+				$('#middle-btn').on('click',startGame);
+			}, 1200);
+		}, 3000);
+		$('#game').removeClass('moving');
 		$('.color-btn').off('click',checkClicks);
 	}
 
