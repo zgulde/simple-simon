@@ -4,7 +4,7 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
-	var spinSpeed = 10;
+	var spinSpeed = 20;
 	//'C 2','C#2',...'C 5' all sharps, no flats
 	var musicalNotes = {
 		"C 2": new Audio('/media/C2.wav'),
@@ -80,7 +80,6 @@
 	}
 
 	function getSoundFromColorName (color) {
-		console.log(colorsLit);
 		switch (color){
 			case "blue":
 				return blueSound;
@@ -134,7 +133,6 @@
 		        startNewRound();
 		    }
 		} else {
-			colorsIndex = 0;
 			endGame();
 		}
 	}
@@ -163,9 +161,10 @@
 
 	function endGame () {
 		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
+		var $lastColor =$('#' + colorsLit[colorsIndex]);
+		colorsIndex = 0;
 		lossSound.play();
 		setTimeout( function(){
-			var $lastColor =$('#' + colorsLit[colorsLit.length-1]);
 			lightUp($lastColor,500);
 			setTimeout( function(){lightUp($lastColor,500);}, 600);
 			setTimeout( function(){
@@ -173,7 +172,7 @@
 				$('#middle-btn-text').text('Again?');
 				$('#middle-btn').on('click',startGame);
 			}, 1200);
-		}, 3000);
+		}, 3400);
 		$('#game').removeClass('moving');
 		$('.color-btn').off('click',checkClicks);
 	}
@@ -226,8 +225,16 @@
 		$('#latest-simon-btn').click(function(){
 			changeAndUpdateSounds('G 2','C 3','E 3','G 3');
 		});
+		$('#amin-btn').click(function(){
+			changeAndUpdateSounds('A 3','C 4','E 4','A 4');
+		});
+		$('#edim-btn').click(function(){
+			changeAndUpdateSounds('E 3','A#3','E 4','A#4');
+		});
+		$('#fifths-btn').click(function(){
+			changeAndUpdateSounds('C 3','G 3','D 4','A 4');
+		});
 	})();
-
 // });
 
 

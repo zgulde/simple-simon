@@ -22,14 +22,17 @@ body{
 	background-color: #444;
 	border-radius: 50%;
 	box-sizing: border-box;
+	box-shadow: 0 0 0 #aaa;
 }
 
 #middle-btn:hover{
 	background-color: #222;
+	box-shadow: 0 0 30px #aaa;
 }
 
 #middle-btn:active{
 	background-color: #000;
+	box-shadow: 0 0 100px #aaa;
 }
 
 #middle-btn-text{
@@ -66,7 +69,7 @@ body{
 }
 
 #green:hover{
-	box-shadow: 0 0 30px green;
+	box-shadow: 0 0 50px green;
 }
 .green-lit,
 #green:active{
@@ -79,12 +82,12 @@ body{
 }
 
 #red:hover{
-	box-shadow: 0 0 30px red;
+	box-shadow: 0 0 50px red;
 }
 
 .red-lit,
 #red:active{
-	box-shadow: 0 0 60px red;
+	box-shadow: 0 0 100px red;
 }
 
 #yellow{
@@ -93,12 +96,12 @@ body{
 }
 
 #yellow:hover{
-	box-shadow: 0 0 30px yellow;
+	box-shadow: 0 0 50px yellow;
 }
 
 .yellow-lit,
 #yellow:active{
-	box-shadow: 0 0 60px yellow;
+	box-shadow: 0 0 100px yellow;
 }
 
 #blue{
@@ -107,12 +110,12 @@ body{
 }
 
 #blue:hover{
-	box-shadow: 0 0 30px blue;
+	box-shadow: 0 0 50px blue;
 }
 
 .blue-lit,
 #blue:active{
-	box-shadow: 0 0 60px blue;
+	box-shadow: 0 0 100px blue;
 }
 
 #options-area {
@@ -131,4 +134,41 @@ body{
 
 label{
 	display: block;
+	margin: 10px 0;
+	font-size: 1.2em;
+	font-weight: bold;
 }
+
+label > select{
+	height: 30px;
+	line-height: 30px;
+	background: #eee;
+	font-size: 1em;
+}
+
+button{
+	display: block;
+	height: 40px;
+	padding: 10px 15px;
+	border-radius: 10%;
+	margin: 10px;
+	font-size: 1em;
+	transition: all 0.3s;
+	box-shadow: 0 0 2px 1px black;
+	background-color: #eee;
+	color: #111;
+}
+
+button:hover{
+	background-color: #111;
+	color: #eee;
+}
+
+button:active{
+	box-shadow: 0 0 0 black;
+}
+
+button:focus{
+	outline: 0;
+}
+
