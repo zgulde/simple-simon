@@ -49,7 +49,8 @@
 	
 	var blueSound, yellowSound, redSound, greenSound; //set after selects are built
 	var spinSpeed; // set in startGame
-	var shaking; // set in shakeBodyRandomly
+	var shakingInterval; // set in shakeBodyRandomly
+	var fadingInterval; //set in fadeGameInRandomly
 
 
 	function randomNumber(min,max){
@@ -71,12 +72,23 @@
 	}
 
 	function shakeBodyRandomly () {
-		shaking = setInterval(function(){
+		shakingInterval = setInterval(function(){
 			if(randomNumber(1,4) === 1){
-				$('body').css('transform','rotate(20deg)');
+				$('body').css('transform','rotate(15deg)');
 				setTimeout( function(){
 					$('body').css('transform','rotate(0)');
 				}, 300);
+			}
+		},1500);
+	}
+
+	function fadeGameInRandomly () {
+		fadingInterval = setInterval(function(){
+			if(randomNumber(1,4) === 1){
+				$('#game').css('opacity','0');
+				setTimeout(function(){
+					$('#game').css('opacity','1');
+				},300);
 			}
 		},1500);
 	}
@@ -161,8 +173,9 @@
 		spinSpeed -= 1;
 		colorsIndex = 0;
 
-		if(colorsLit.length === 5) $('#game').addClass('moving');
-		if(colorsLit.length === 3) shakeBodyRandomly();
+		if(colorsLit.length === 2) fadeGameInRandomly();
+		if(colorsLit.length === 4) shakeBodyRandomly();
+		if(colorsLit.length === 6) $('#game').addClass('moving');
 		
 		addRandomColor();
 
@@ -187,8 +200,10 @@
 
 		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
 		$('.color-btn').off('click',checkClicks);
+
 		$('#game').removeClass('moving');
-		clearInterval(shaking);
+		clearInterval(shakingInterval);
+		clearInterval(fadingInterval);
 		
 		//after the lossSound is played light up what would have been the 
 		//correct color 3 times
@@ -200,8 +215,7 @@
 				$('#middle-btn-text').text('Again?');
 				$('#middle-btn').on('click',startGame);
 			}, 1200);
-		}, 3400);
-		
+		}, 3400);	
 	}
 
 	//build the note selects
@@ -273,11 +287,3 @@
 		});
 	})();
 // });
-
-
-
-
-// setInterval(function(){
-//   rotate+=5;
-//   $('#game').css('transform','rotate('+rotate+'deg)');
-// },100);
