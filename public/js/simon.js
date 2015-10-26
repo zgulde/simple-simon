@@ -108,6 +108,13 @@
 		}, duration);
 	}
 
+	function lightUpAll () {
+		lightUp($('#blue'),500);
+		setTimeout( function(){ lightUp($('#yellow'),500); }, 500);
+		setTimeout( function(){ lightUp($('#red'),500); }, 1000);
+		setTimeout( function(){ lightUp($('#green'),500); }, 1500);
+	}
+
 	function showCurrentSequence () {
 		var i = 0;
 		var showingSequence = setInterval(function(){
@@ -222,18 +229,23 @@
 		});
 		$('#original-simon-btn').click(function(){
 			changeAndUpdateSounds('E 2','C#3','A 3','E 4');
+			lightUpAll();
 		});
 		$('#latest-simon-btn').click(function(){
 			changeAndUpdateSounds('G 2','C 3','E 3','G 3');
+			lightUpAll();
 		});
 		$('#amin-btn').click(function(){
 			changeAndUpdateSounds('A 3','C 4','E 4','A 4');
+			lightUpAll();
 		});
 		$('#edim-btn').click(function(){
 			changeAndUpdateSounds('E 3','A#3','E 4','A#4');
+			lightUpAll();
 		});
 		$('#fifths-btn').click(function(){
 			changeAndUpdateSounds('C 3','G 3','D 4','A 4');
+			lightUpAll();
 		});
 	})();
 // });
