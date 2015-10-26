@@ -4,7 +4,8 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
-	var spinSpeed; // set in startGame
+	var lossSound = new Audio('/media/mario_game_over.mp3');
+
 	//'C 2','C#2',...'C 5' all sharps, no flats
 	var musicalNotes = {
 		"C 2": new Audio('/media/C2.wav'),
@@ -45,11 +46,10 @@
 		"B 4": new Audio('/media/B4.wav'),
 		"C 5": new Audio('/media/C5.wav')
 	}
-	var blueSound = musicalNotes['C 3'];
-	var yellowSound = musicalNotes['G 3'];
-	var redSound = musicalNotes['B 3'];
-	var greenSound = musicalNotes['C 4'];
-	var lossSound = new Audio('/media/mario_game_over.mp3');
+	
+	var blueSound, yellowSound, redSound, greenSound; //set after selects are built
+	var spinSpeed; // set in startGame
+	var shaking; // set in shakeBodyRandomly
 
 
 	function randomNumber(min,max){
@@ -68,6 +68,17 @@
 		
 		greenSound = musicalNotes[greenNoteName];
 		$('#change-green-note').val(greenNoteName);
+	}
+
+	function shakeBodyRandomly () {
+		shaking = setInterval(function(){
+			if(randomNumber(1,4) === 1){
+				$('body').css('transform','rotate(20deg)');
+				setTimeout( function(){
+					$('body').css('transform','rotate(0)');
+				}, 300);
+			}
+		},1500);
 	}
 
 	function playThenPause (sound,duration) {
@@ -137,7 +148,9 @@
 		if ($(this).attr('id') === colorsLit[colorsIndex]) {
 		    colorsIndex += 1;
 		    if (colorsIndex === colorsLit.length) {
-		        startNewRound();
+			    startNewRound();
+			    $('#game').addClass('flip');
+			    setTimeout( function(){ $('#game').removeClass('flip'); }, 300);
 		    }
 		} else {
 			endGame();
@@ -148,7 +161,8 @@
 		spinSpeed -= 1;
 		colorsIndex = 0;
 
-		if(colorsLit.length === 3) $('#game').addClass('moving');
+		if(colorsLit.length === 5) $('#game').addClass('moving');
+		if(colorsLit.length === 3) shakeBodyRandomly();
 		
 		addRandomColor();
 
@@ -161,17 +175,23 @@
 
 	function startGame () {
 		spinSpeed = 20;
-		$('#game').removeClass('moving');
 		colorsLit = [];
 		$('#middle-btn').off('click');
 		startNewRound();
 	}
 
 	function endGame () {
-		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
 		var $lastColor =$('#' + colorsLit[colorsIndex]);
 		colorsIndex = 0;
 		lossSound.play();
+
+		$('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
+		$('.color-btn').off('click',checkClicks);
+		$('#game').removeClass('moving');
+		clearInterval(shaking);
+		
+		//after the lossSound is played light up what would have been the 
+		//correct color 3 times
 		setTimeout( function(){
 			lightUp($lastColor,500);
 			setTimeout( function(){lightUp($lastColor,500);}, 600);
@@ -181,8 +201,7 @@
 				$('#middle-btn').on('click',startGame);
 			}, 1200);
 		}, 3400);
-		$('#game').removeClass('moving');
-		$('.color-btn').off('click',checkClicks);
+		
 	}
 
 	//build the note selects
@@ -194,10 +213,7 @@
 					note + '</option>');
 			}
 		});
-		$('#change-blue-note').val('C 3');
-		$('#change-yellow-note').val('G 3');
-		$('#change-red-note').val('B 3');
-		$('#change-green-note').val('C 4');
+		changeAndUpdateSounds('C 3','G 3','B 3','C 4');
 	})();
 
 	//add event listeners
@@ -245,6 +261,14 @@
 		});
 		$('#fifths-btn').click(function(){
 			changeAndUpdateSounds('C 3','G 3','D 4','A 4');
+			lightUpAll();
+		});
+		$('#smoke-on-the-water-btn').click(function(){
+			changeAndUpdateSounds('A 3','C 4','D 4','D#4');
+			lightUpAll();
+		});
+		$('#little-lamb-btn').click(function(){
+			changeAndUpdateSounds('C 4','D 4','E 4','G 4');
 			lightUpAll();
 		});
 	})();

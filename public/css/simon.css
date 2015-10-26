@@ -1,5 +1,6 @@
 body{
 	background-color: #bbb;
+	transition: all 0.3s;
 }
 
 #game{
@@ -11,6 +12,7 @@ body{
 	border: 15px solid #555;
 	box-shadow: 0 0 5px 8px black;
 	display: inline-block;
+	transition: transform 0.3s linear;
 }
 
 #middle-btn{
@@ -123,7 +125,7 @@ body{
 	position: relative;
 	width: 20%;
 	margin: 0 25px;
-	height: 500px;
+	/*height: 500px;*/
 	border-radius: 3%;
 	background-color: #ddd;
 	box-shadow: 2px 2px 2px black;

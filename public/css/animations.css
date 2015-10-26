@@ -23,3 +23,7 @@
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
+
+.flip{
+	transform: rotateY(90deg);
+}
