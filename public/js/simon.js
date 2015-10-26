@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function(){
+// $(document).ready(function(){
 
     //array of strings of color names
     //pushed to in addRandomColor
@@ -182,6 +182,7 @@ $(document).ready(function(){
                 setTimeout( function(){ $('#game').removeClass('flip'); }, 300);
             }
         } else {
+            colorsIndex = 0;
             endGame();
         }
     }
@@ -207,6 +208,9 @@ $(document).ready(function(){
         showCurrentSequence();
     }
 
+    //resets spinSpeed and colorsLit
+    //removes click listener from middle-btn
+    //calls startNewRound
     function startGame () {
         spinSpeed = 20;
         colorsLit = [];
@@ -214,9 +218,11 @@ $(document).ready(function(){
         startNewRound();
     }
 
+    //plays the lossSound, changes middle-btn text, removes checkClicks
+    //removes all difficulty effects and lights up the color the user was
+    //supposed to click
     function endGame () {
         var $lastColor =$('#' + colorsLit[colorsIndex]);
-        colorsIndex = 0;
         lossSound.play();
 
         $('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
@@ -338,4 +344,4 @@ $(document).ready(function(){
             playLittleLamb();
         });
     })();
-});
+// });
