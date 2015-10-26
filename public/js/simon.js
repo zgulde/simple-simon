@@ -4,7 +4,7 @@
 	var colorsLit = [];
 	var colorsIndex = 0;
 	var lightUpSpeed = 350;
-	var spinSpeed = 20;
+	var spinSpeed; // set in startGame
 	//'C 2','C#2',...'C 5' all sharps, no flats
 	var musicalNotes = {
 		"C 2": new Audio('/media/C2.wav'),
@@ -153,6 +153,7 @@
 	}
 
 	function startGame () {
+		spinSpeed = 20;
 		$('#game').removeClass('moving');
 		colorsLit = [];
 		$('#middle-btn').off('click');

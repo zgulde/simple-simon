@@ -73,7 +73,7 @@ body{
 }
 .green-lit,
 #green:active{
-	box-shadow: 0 0 60px green;
+	box-shadow: 0 0 100px green;
 }
 
 #red{
@@ -144,19 +144,21 @@ label > select{
 	line-height: 30px;
 	background: #eee;
 	font-size: 1em;
+	box-shadow: 2px 2px 2px black;
 }
 
 button{
 	display: block;
 	height: 40px;
 	padding: 10px 15px;
-	border-radius: 10%;
+	border-radius: 5%;
 	margin: 10px;
 	font-size: 1em;
 	transition: all 0.3s;
 	box-shadow: 0 0 2px 1px black;
 	background-color: #eee;
 	color: #111;
+	font-weight: bold;
 }
 
 button:hover{
