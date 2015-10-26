@@ -200,7 +200,7 @@
         if(colorsLit.length === 4) shakeBodyRandomly();
         if(colorsLit.length === 6) $('#game').addClass('moving');
         
-        $('#middle-btn-text').text('Round ' + colorsLit.length);
+        $('#middle-btn-text').html('Round ' + '<br>' + (colorsLit.length+1));
         $('.moving').css('animation-duration',spinSpeed + 's');
         $('.color-btn').off('click',checkClicks);
         
