@@ -144,12 +144,21 @@ label{
     font-weight: bold;
 }
 
-label > select{
+select{
     height: 30px;
     line-height: 30px;
     background: #eee;
     font-size: 1em;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px 0 black;
+    transition: all 0.3s;
+}
+
+select:hover{
+    box-shadow: 1px 1px 4px 2px black;
+}
+
+select:focus{
+    outline: 0;
 }
 
 button{
