@@ -7,15 +7,6 @@
 	}
 }
 
-@keyframes move-left-and-right{
-	from{
-		tranform: translate(-100,0)	rotate(-180deg);
-	}
-	to{
-		transform: translate(100px,0) rotate(180deg);
-	}
-}
-
 .moving{
 	animation-name: spin;
 	animation-duration: 20s;

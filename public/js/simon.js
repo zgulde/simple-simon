@@ -50,7 +50,7 @@
 	var blueSound, yellowSound, redSound, greenSound; //set after selects are built
 	var spinSpeed; // set in startGame
 	var shakingInterval; // set in shakeBodyRandomly
-	var fadingInterval; //set in fadeGameInRandomly
+	var fadingInterval; //set in fadeGameRandomly
 
 
 	function randomNumber(min,max){
@@ -82,7 +82,7 @@
 		},1500);
 	}
 
-	function fadeGameInRandomly () {
+	function fadeGameRandomly () {
 		fadingInterval = setInterval(function(){
 			if(randomNumber(1,4) === 1){
 				$('#game').css('opacity','0');
@@ -173,7 +173,7 @@
 		spinSpeed -= 1;
 		colorsIndex = 0;
 
-		if(colorsLit.length === 2) fadeGameInRandomly();
+		if(colorsLit.length === 2) fadeGameRandomly();
 		if(colorsLit.length === 4) shakeBodyRandomly();
 		if(colorsLit.length === 6) $('#game').addClass('moving');
 		
