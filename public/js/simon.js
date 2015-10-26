@@ -218,6 +218,37 @@
 		}, 3400);	
 	}
 
+	function playSmokeOnTheWater () {
+		lightUp($('#blue'),450);
+		setTimeout( function(){ lightUp($('#yellow'),450); }, 500);
+		setTimeout( function(){ lightUp($('#red'),700); }, 1000);
+		setTimeout( function(){ lightUp($('#blue'),450); }, 1750);
+		setTimeout( function(){ lightUp($('#yellow'),450); }, 2250);
+		setTimeout( function(){ lightUp($('#green'),250); }, 2750);
+		setTimeout( function(){ lightUp($('#red'),700); }, 3000);
+		setTimeout( function(){ lightUp($('#blue'),450); }, 3750);
+		setTimeout( function(){ lightUp($('#yellow'),450); }, 4250);
+		setTimeout( function(){ lightUp($('#red'),700); }, 4750);
+		setTimeout( function(){ lightUp($('#yellow'),450); }, 5500);
+		setTimeout( function(){ lightUp($('#blue'),700); }, 6000);
+	}
+
+	function playLittleLamb () {
+		lightUp($('#red'),300);
+		setTimeout( function(){ lightUp($('#yellow'),400); }, 500);
+		setTimeout( function(){ lightUp($('#blue'),400); }, 1000);
+		setTimeout( function(){ lightUp($('#yellow'),400); }, 1500);
+		setTimeout( function(){ lightUp($('#red'),400); }, 2000);
+		setTimeout( function(){ lightUp($('#red'),400); }, 2500);
+		setTimeout( function(){ lightUp($('#red'),400); }, 3000);
+		setTimeout( function(){ lightUp($('#yellow'),400); }, 4000);
+		setTimeout( function(){ lightUp($('#yellow'),400); }, 4500);
+		setTimeout( function(){ lightUp($('#yellow'),400); }, 5000);
+		setTimeout( function(){ lightUp($('#red'),400); }, 6000);
+		setTimeout( function(){ lightUp($('#green'),400); }, 6500);
+		setTimeout( function(){ lightUp($('#green'),400); }, 7000);
+	}
+
 	//build the note selects
 	(function(){
 		$('.change-note').each(function(index,element){
@@ -279,11 +310,11 @@
 		});
 		$('#smoke-on-the-water-btn').click(function(){
 			changeAndUpdateSounds('A 3','C 4','D 4','D#4');
-			lightUpAll();
+			playSmokeOnTheWater();
 		});
 		$('#little-lamb-btn').click(function(){
 			changeAndUpdateSounds('C 4','D 4','E 4','G 4');
-			lightUpAll();
+			playLittleLamb();
 		});
 	})();
 // });
