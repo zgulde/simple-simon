@@ -69,7 +69,7 @@ body{
 }
 
 #green{
-    background: linear-gradient(to top left, rgba(255,255,255,0.1) 5%, green, green, darkgreen);
+    background: radial-gradient(circle at bottom right, white, green, green 60%, black);
     border-radius: 100% 0 0 0;
 }
 
@@ -82,7 +82,7 @@ body{
 }
 
 #red{
-    background: linear-gradient(to top right, rgba(255,255,255,0.1) 5%, red, red, darkred);
+    background: radial-gradient(circle at bottom left, white, red, red 60%, black);
     border-radius: 0 100% 0 0;
 }
 
@@ -96,7 +96,7 @@ body{
 }
 
 #yellow{
-    background: linear-gradient(to bottom left, rgba(255,255,255,0.1) 5%, yellow, yellow, gold);
+    background: radial-gradient(circle at top right, white, yellow, yellow 60%, black);
     border-radius: 0 0 0 100%;
 }
 
@@ -110,7 +110,7 @@ body{
 }
 
 #blue{
-    background: linear-gradient(to bottom right, rgba(255,255,255,0.1) 1%, blue, blue, darkblue);
+    background: radial-gradient(circle at top left, white, blue, blue 60%, black);
     border-radius: 0 0 100% 0;
 }
 
