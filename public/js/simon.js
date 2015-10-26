@@ -1,9 +1,14 @@
 "use strict";
 $(document).ready(function(){
 
+    //array of strings of color names
+    //pushed to in addRandomColor
     var colorsLit = [];
-    var colorsIndex = 0;
+
+    var colorsIndex = 0; //used in checkClicks, startNewRound, endGame
+
     var lightUpSpeed = 350;
+
     var lossSound = new Audio('/media/mario_game_over.mp3');
 
     //'C 2','C#2',...'C 5' all sharps, no flats
@@ -47,10 +52,17 @@ $(document).ready(function(){
         "C 5": new Audio('/media/C5.wav')
     }
     
-    var blueSound, yellowSound, redSound, greenSound; //set after selects are built
-    var spinSpeed; // set in startGame
-    var shakingInterval; // set in shakeBodyRandomly
-    var fadingInterval; //set in fadeGameRandomly
+    //set after selects are built by changeAndUpdateSounds
+    //changed in the select event handlers
+    //returned from getSoundFromColorName
+    var blueSound, yellowSound, redSound, greenSound; 
+
+    var spinSpeed; // set in startGame, decremented and used in startNewRound
+
+    //set in shakeBodyRandomly and fadeGameRandomly, respectively
+    //cleared in endGame
+    var shakingInterval; 
+    var fadingInterval; //set in 
 
 
     function randomNumber(min,max){
@@ -119,6 +131,7 @@ $(document).ready(function(){
         }
     }
 
+    //also plays the coresponding sound
     function lightUp($color,duration){
         var sound = getSoundFromColorName($color.attr('id'));
         if(!duration) duration = lightUpSpeed;
@@ -131,13 +144,15 @@ $(document).ready(function(){
         }, duration);
     }
 
-    function lightUpAll () {
+    function lightUpAllInSequence () {
         lightUp($('#blue'),500);
         setTimeout( function(){ lightUp($('#yellow'),500); }, 500);
         setTimeout( function(){ lightUp($('#red'),500); }, 1000);
         setTimeout( function(){ lightUp($('#green'),500); }, 1500);
     }
 
+    //also reattaches the checkClicks event handler to the 
+    //color btn divs
     function showCurrentSequence () {
         var i = 0;
         var showingSequence = setInterval(function(){
@@ -156,6 +171,8 @@ $(document).ready(function(){
         colorsLit.push(colorToAdd);
     }
 
+    //calls startNewRound or endGame
+    //also adds the class to animate the game flipping
     function checkClicks () {
         if ($(this).attr('id') === colorsLit[colorsIndex]) {
             colorsIndex += 1;
@@ -169,6 +186,11 @@ $(document).ready(function(){
         }
     }
 
+    //decrements spinSpeed and resets colorIndex
+    //adds difficulty effects based on the round number
+    //updates middle-btn text and spinSpeed
+    //removes the checkClicks handler on the color-btn divs
+    //calls addRandomColor and showCurrentSequence
     function startNewRound () {
         spinSpeed -= 1;
         colorsIndex = 0;
@@ -177,12 +199,11 @@ $(document).ready(function(){
         if(colorsLit.length === 4) shakeBodyRandomly();
         if(colorsLit.length === 6) $('#game').addClass('moving');
         
-        addRandomColor();
-
         $('#middle-btn-text').text('Round ' + colorsLit.length);
         $('.moving').css('animation-duration',spinSpeed + 's');
         $('.color-btn').off('click',checkClicks);
         
+        addRandomColor();
         showCurrentSequence();
     }
 
@@ -206,7 +227,7 @@ $(document).ready(function(){
         clearInterval(fadingInterval);
         
         //after the lossSound is played light up what would have been the 
-        //correct color 3 times
+        //correct color 3 times and reattach the 
         setTimeout( function(){
             lightUp($lastColor,500);
             setTimeout( function(){lightUp($lastColor,500);}, 600);
@@ -290,23 +311,23 @@ $(document).ready(function(){
         });
         $('#original-simon-btn').click(function(){
             changeAndUpdateSounds('E 2','C#3','A 3','E 4');
-            lightUpAll();
+            lightUpAllInSequence();
         });
         $('#latest-simon-btn').click(function(){
             changeAndUpdateSounds('G 2','C 3','E 3','G 3');
-            lightUpAll();
+            lightUpAllInSequence();
         });
         $('#amin-btn').click(function(){
             changeAndUpdateSounds('A 3','C 4','E 4','A 4');
-            lightUpAll();
+            lightUpAllInSequence();
         });
         $('#edim-btn').click(function(){
             changeAndUpdateSounds('E 3','A#3','E 4','A#4');
-            lightUpAll();
+            lightUpAllInSequence();
         });
         $('#fifths-btn').click(function(){
             changeAndUpdateSounds('C 3','G 3','D 4','A 4');
-            lightUpAll();
+            lightUpAllInSequence();
         });
         $('#smoke-on-the-water-btn').click(function(){
             changeAndUpdateSounds('A 3','C 4','D 4','D#4');
