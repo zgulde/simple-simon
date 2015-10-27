@@ -7,6 +7,15 @@
 	}
 }
 
+@keyframes spin-shrink{
+	50%{
+		transform: scale(0) rotateY(1080deg);
+	}
+	100%{
+		transform: scale(1) rotateY(0);
+	}
+}
+
 .moving{
 	animation-name: spin;
 	animation-duration: 20s;
@@ -17,4 +26,11 @@
 
 .flip{
 	transform: rotateY(90deg);
+}
+
+.end-game-anim{
+	animation-name: spin-shrink;
+	animation-duration: 3s;
+	animation-direction: normal;
+	animation-iteration-count: 1;
 }

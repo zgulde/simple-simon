@@ -1,5 +1,5 @@
 "use strict";
-// $(document).ready(function(){
+$(document).ready(function(){
 
     //array of strings of color names
     //pushed to in addRandomColor
@@ -62,7 +62,7 @@
     //set in shakeBodyRandomly and fadeGameRandomly, respectively
     //cleared in endGame
     var shakingInterval; 
-    var fadingInterval; //set in 
+    var fadingInterval;
 
 
     function randomNumber(min,max){
@@ -224,6 +224,7 @@
     function endGame () {
         var $lastColor =$('#' + colorsLit[colorsIndex]);
         lossSound.play();
+        $('#game').addClass('end-game-anim');
 
         $('#middle-btn-text').text('Score ' + (colorsLit.length - 1) );
         $('.color-btn').off('click',checkClicks);
@@ -233,7 +234,7 @@
         clearInterval(fadingInterval);
         
         //after the lossSound is played light up what would have been the 
-        //correct color 3 times and reattach the 
+        //correct color 3 times and reattach the startGame handler
         setTimeout( function(){
             lightUp($lastColor,500);
             setTimeout( function(){lightUp($lastColor,500);}, 600);
@@ -241,6 +242,7 @@
                 lightUp($lastColor,500);
                 $('#middle-btn-text').text('Again?');
                 $('#middle-btn').on('click',startGame);
+                $('#game').removeClass('end-game-anim');
             }, 1200);
         }, 3400);   
     }
@@ -344,4 +346,4 @@
             playLittleLamb();
         });
     })();
-// });
+});
