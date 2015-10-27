@@ -1,7 +1,7 @@
 "use strict";
 $(document).ready(function(){
 
-    //array of strings of color names
+    //array of strings of color names eg 'red'
     //pushed to in addRandomColor
     var colorsLit = [];
 

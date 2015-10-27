@@ -190,7 +190,7 @@ button:focus{
     outline: 0;
 }
 
-/* --caution!--: below lies the button hover glint effects */
+/* --caution!--: below lies the button hover glint effect */
 
 button:before {
     content: "";

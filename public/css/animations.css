@@ -9,16 +9,16 @@
 
 @keyframes spin-shrink{
 	50%{
-		transform: scale(0) rotateY(1080deg);
+		transform: scale(0) rotateY(900deg);
 	}
 	100%{
 		transform: scale(1) rotateY(0);
 	}
 }
 
+/*animation-duration is set in startNewRound() in js file*/
 .moving{
 	animation-name: spin;
-	animation-duration: 20s;
 	animation-direction: normal;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
@@ -33,4 +33,5 @@
 	animation-duration: 3s;
 	animation-direction: normal;
 	animation-iteration-count: 1;
+	animation-timing-function: cubic-bezier(.65,.09,.65,2);
 }
