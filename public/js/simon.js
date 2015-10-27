@@ -134,10 +134,13 @@ $(document).ready(function(){
     //also plays the coresponding sound
     function lightUp($color,duration){
         var sound = getSoundFromColorName($color.attr('id'));
+
         if(!duration) duration = lightUpSpeed;
+        
         playThenPause(sound);
         $color.addClass('light-up');
         $color.addClass($color.attr('id') + '-lit');
+        
         setTimeout( function(){
             $color.removeClass('light-up')
             $color.removeClass($color.attr('id') + '-lit');
@@ -289,7 +292,6 @@ $(document).ready(function(){
         });
         changeAndUpdateSounds('C 3','G 3','B 3','C 4');
     })();
-
     //add event listeners
     (function(){
         $('#middle-btn').click(startGame);
