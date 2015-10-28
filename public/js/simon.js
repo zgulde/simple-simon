@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     var lightUpSpeed = 350;
 
-    var lossSound = new Audio('../media/mario_game_over.mp3');
+    var lossSound = new Audio('../public/media/mario_game_over.mp3');
 
     //'C 2','C#2',...'C 5' all sharps, no flats
     var musicalNotes = {
