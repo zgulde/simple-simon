@@ -8,7 +8,7 @@
 }
 
 @keyframes spin-shrink{
-	50%{
+	75%{
 		transform: scale(0) rotateY(900deg);
 	}
 	100%{
