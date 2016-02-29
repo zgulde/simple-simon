@@ -280,72 +280,70 @@ $(document).ready(function(){
         setTimeout( function(){ lightUp($('#green'),400); }, 6500);
         setTimeout( function(){ lightUp($('#green'),400); }, 7000);
     }
+ 
+    //add event listeners
+    $('#middle-btn').click(startGame);
+    $('.color-btn').click(function(){
+        var sound = getSoundFromColorName($(this).attr('id'));
+        playThenPause(sound,200);
+    });
+    $('#change-blue-note').change(function(){
+        blueSound = musicalNotes[$(this).val()];
+        playThenPause(blueSound);
+        lightUp($('#blue'));
+    });
+    $('#change-yellow-note').change(function(){
+        yellowSound = musicalNotes[$(this).val()];
+        playThenPause(yellowSound);
+        lightUp($('#yellow'));
+    });
+    $('#change-red-note').change(function(){
+        redSound = musicalNotes[$(this).val()];
+        playThenPause(redSound);
+        lightUp($('#red'));
+    });
+    $('#change-green-note').change(function(){
+        greenSound = musicalNotes[$(this).val()];
+        playThenPause(greenSound);
+        lightUp($('#green'));
+    });
+    $('#original-simon-btn').click(function(){
+        changeAndUpdateSounds('E 2','C#3','A 3','E 4');
+        lightUpAllInSequence();
+    });
+    $('#latest-simon-btn').click(function(){
+        changeAndUpdateSounds('G 2','C 3','E 3','G 3');
+        lightUpAllInSequence();
+    });
+    $('#amin-btn').click(function(){
+        changeAndUpdateSounds('A 3','C 4','E 4','A 4');
+        lightUpAllInSequence();
+    });
+    $('#edim-btn').click(function(){
+        changeAndUpdateSounds('E 3','A#3','E 4','A#4');
+        lightUpAllInSequence();
+    });
+    $('#fifths-btn').click(function(){
+        changeAndUpdateSounds('C 3','G 3','D 4','A 4');
+        lightUpAllInSequence();
+    });
+    $('#smoke-on-the-water-btn').click(function(){
+        changeAndUpdateSounds('A 3','C 4','D 4','D#4');
+        playSmokeOnTheWater();
+    });
+    $('#little-lamb-btn').click(function(){
+        changeAndUpdateSounds('C 4','D 4','E 4','G 4');
+        playLittleLamb();
+    });
 
     //build the note selects
-    (function(){
-        $('.change-note').each(function(index,element){
-            var $select = $(this);
-            for(var note in musicalNotes){  
-                $select.append('<option value="'+note+'">' +
-                    note + '</option>');
-            }
-        });
-        changeAndUpdateSounds('C 3','G 3','B 3','C 4');
-    })();
-    //add event listeners
-    (function(){
-        $('#middle-btn').click(startGame);
-        $('.color-btn').click(function(){
-            var sound = getSoundFromColorName($(this).attr('id'));
-            playThenPause(sound,200);
-        });
-        $('#change-blue-note').change(function(){
-            blueSound = musicalNotes[$(this).val()];
-            playThenPause(blueSound);
-            lightUp($('#blue'));
-        });
-        $('#change-yellow-note').change(function(){
-            yellowSound = musicalNotes[$(this).val()];
-            playThenPause(yellowSound);
-            lightUp($('#yellow'));
-        });
-        $('#change-red-note').change(function(){
-            redSound = musicalNotes[$(this).val()];
-            playThenPause(redSound);
-            lightUp($('#red'));
-        });
-        $('#change-green-note').change(function(){
-            greenSound = musicalNotes[$(this).val()];
-            playThenPause(greenSound);
-            lightUp($('#green'));
-        });
-        $('#original-simon-btn').click(function(){
-            changeAndUpdateSounds('E 2','C#3','A 3','E 4');
-            lightUpAllInSequence();
-        });
-        $('#latest-simon-btn').click(function(){
-            changeAndUpdateSounds('G 2','C 3','E 3','G 3');
-            lightUpAllInSequence();
-        });
-        $('#amin-btn').click(function(){
-            changeAndUpdateSounds('A 3','C 4','E 4','A 4');
-            lightUpAllInSequence();
-        });
-        $('#edim-btn').click(function(){
-            changeAndUpdateSounds('E 3','A#3','E 4','A#4');
-            lightUpAllInSequence();
-        });
-        $('#fifths-btn').click(function(){
-            changeAndUpdateSounds('C 3','G 3','D 4','A 4');
-            lightUpAllInSequence();
-        });
-        $('#smoke-on-the-water-btn').click(function(){
-            changeAndUpdateSounds('A 3','C 4','D 4','D#4');
-            playSmokeOnTheWater();
-        });
-        $('#little-lamb-btn').click(function(){
-            changeAndUpdateSounds('C 4','D 4','E 4','G 4');
-            playLittleLamb();
-        });
-    })();
+    $('.change-note').each(function(index,element){
+        var $select = $(this);
+        for(var note in musicalNotes){  
+            $select.append('<option value="'+note+'">' +
+                note + '</option>');
+        }
+    });
+
+    changeAndUpdateSounds('C 3','G 3','B 3','C 4');
 });
